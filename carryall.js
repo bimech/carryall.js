@@ -1,7 +1,7 @@
 /**
  * Carryall: A conditional, self-contained, lazily-evaluating script loader.
  * Author: Frank O'Hara, bimech.net
- * Version: 0.1.0
+ * Version: 0.1.1
  */
 
 var Carryall = (function() {
@@ -59,8 +59,23 @@ var Carryall = (function() {
         return 'check' in manifestItem;
     };
     var _performCheck = function(manifestItem) {
-        return typeof manifestItem.check == 'function' ? manifestItem.check() : manifestItem.check;
+        var checkType = typeof manifestItem.check;
+        switch(checkType) {
+            case 'boolean':
+                return manifestItem.check;
+                break;
+            case 'function':
+                return manifestItem.check();
+                break;
+            case 'string':
+                return _performEvalCheck(manifestItem.check);
+                break;
+        }
     };
+    var _performEvalCheck = function(checkStr) {
+        var evalCheck = eval('[' + checkStr + ']')[0];
+        return typeof evalCheck == 'function' ? evalCheck() : evalCheck;
+    }
     var _performChecks = function(manifest) {
         for(var i = 0; i < manifest.length; i++) {
             if(_hasCheck(manifest[i])) {

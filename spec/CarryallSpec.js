@@ -119,6 +119,13 @@ describe("Caryall", function() {
                 Carryall.deliver(manifest, cargo);
                 expect(typeof foo == 'function').toBe(true);
             });
+            it("unpacks the cargo with a valid manifest and an eval functional check", function() {
+                var manifest = [{'check': "function() { return true;}", 'checkPassed': ['foo.js']}];
+                var cargo = [{'name': 'foo.js', 'payload': "window.foo = function foo() {return 'foo';};"}];
+                expect(typeof foo == 'undefined').toBe(true);
+                Carryall.deliver(manifest, cargo);
+                expect(typeof foo == 'function').toBe(true);
+            });
             it("does not unpack the checkPassed cargo if the check failed", function() {
                 var manifest = [{'check': false, 'checkPassed': ['foo.js']}];
                 var cargo = [{'name': 'foo.js', 'payload': "window.foo = function foo() {return 'foo';};"}];
