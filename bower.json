@@ -13,7 +13,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:bimech/carryall.js.git"
+        "url": "git://github.com:bimech/carryall.js.git"
     },
     "licenses": [{
         "type": "MIT"
