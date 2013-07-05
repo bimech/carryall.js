@@ -1,0 +1,28 @@
+{
+    "name": "carryall",
+    "version": "0.1.1",
+    "description": "A conditional, self-contained, lazily-evaluating script loader.",
+    "main": "carryall.js",
+    "keywords": ["loader"],
+    "homepage": "https://github.com/bimech/carryall.js",
+    "bugs": "https://github.com/bimech/carryall.js/issues",
+    "author": {
+        "name": "Frank O'Hara",
+        "email": "frank@binarymechanics.com",
+        "url": "http://binarymechanics.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:bimech/carryall.js.git"
+    },
+    "licenses": [{
+        "type": "MIT"
+    }],
+    "ignore": [
+        "bower_components",
+        ".gitignore"
+    ],
+    "devDependencies": {
+        "jasmine": "1.3.1"
+    }
+}
