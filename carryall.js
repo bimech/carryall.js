@@ -1,7 +1,7 @@
 /**
  * Carryall: A conditional, self-contained, lazily-evaluating script loader.
  * Author: Frank O'Hara, bimech.net
- * Version: 0.1.1
+ * Version: 0.1.2
  */
 
 var Carryall = (function() {

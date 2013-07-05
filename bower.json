@@ -1,6 +1,6 @@
 {
     "name": "carryall",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "A conditional, self-contained, lazily-evaluating script loader.",
     "main": "carryall.js",
     "keywords": ["loader"],
