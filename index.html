@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Carryall.js by bimech</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Carryall.js</h1>
+        <p>A conditional, self-contained, lazily-evaluating script loader.</p>
+
+        <p class="view"><a href="https://github.com/bimech/carryall.js">View the Project on GitHub <small>bimech/carryall.js</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/bimech/carryall.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/bimech/carryall.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/bimech/carryall.js">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="carryalljs" class="anchor" href="#carryalljs"><span class="octicon octicon-link"></span></a>Carryall.js</h1>
+
+<p><img src="http://binarymechanics.com/carryall_js.png" alt="Carryall.js Logo"></p>
+
+<p>A conditional, self-contained, lazily-evaluating script loader.</p>
+
+<h2>
+<a name="purpose" class="anchor" href="#purpose"><span class="octicon octicon-link"></span></a>Purpose</h2>
+
+<p>Carryall was designed for a very specific use case: the ability to conditionally load scripts without making http requests.  </p>
+
+<h2>
+<a name="how-it-works" class="anchor" href="#how-it-works"><span class="octicon octicon-link"></span></a>How It Works</h2>
+
+<p>Carryall uses lazy evaluation to load scripts.  Scripts are stored as string cargo, and are only evaluated if needed.  In this way, Carryall is self-contained: it carries its script payload around with it.  If you're interested in this concept, you can read about it <a href="http://tomdale.net/2012/01/amd-is-not-the-answer/">here</a> and <a href="http://calendar.perfplanet.com/2011/lazy-evaluation-of-commonjs-modules/">here</a>.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Carryall does one thing: deliver scripts.  To use it, pass it a manifest and cargo:</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">manifest</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'check'</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'checkPassed'</span><span class="o">:</span> <span class="p">[</span><span class="s1">'foo.js'</span><span class="p">]}];</span>
+<span class="kd">var</span> <span class="nx">cargo</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'name'</span><span class="o">:</span> <span class="s1">'foo.js'</span><span class="p">,</span> <span class="s1">'payload'</span><span class="o">:</span> <span class="s2">"window.foo = function foo() {return 'foo';};"</span><span class="p">}];</span>
+<span class="nx">Carryall</span><span class="p">.</span><span class="nx">deliver</span><span class="p">(</span><span class="nx">manifest</span><span class="p">,</span> <span class="nx">cargo</span><span class="p">);</span>
+
+<span class="c1">// You may now call foo().</span>
+</pre></div>
+
+<h2>
+<a name="history" class="anchor" href="#history"><span class="octicon octicon-link"></span></a>History</h2>
+
+<p>We built a browser testing tool called <a href="https://github.com/fohara/red-glass">RedGlass</a> which injects JavaScript into an automated browser session via Selenium (or otherwise), and it needed a way to conditionally load shims to support its primary script.  Since we are injecting script directly into the browser session, there was no “server” which a conditional script loader could call to fetch additional scripts. Conventionally designed script loaders, which assume the presence of a script server, could therefor not be used.  We built Carryall to address this use case.</p>
+
+<p>We have previously conditionally loaded scripts in RedGlass by iterating through the conditions via the test automation API: driver.execute_script(“return typeof jQuery == 'function';”). This worked well enough, however, we wanted redglass.js to be self-contained, and load whichever scripts it needed independently on the client side.  Carryall.js enabled us to accomplish that.</p>
+
+<h2>
+<a name="generation" class="anchor" href="#generation"><span class="octicon octicon-link"></span></a>Generation</h2>
+
+<p>Don't want to type out your own Carryall delivery files (like the one above), eh?  You're in luck: they can be generated with the carryall-packer build tool (via npm on node.js).</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/bimech">bimech</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
